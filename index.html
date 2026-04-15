@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Barber Booking Interface</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=DM+Serif+Display:opsz@9..40&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-1"></div>
+    <div class="bg-shape bg-shape-2"></div>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Modern Booking System</p>
+        <h1>Barber Appointment Studio</h1>
+      </div>
+      <div class="role-switch">
+        <span>View as</span>
+        <button data-role="customer" class="role-btn active">Customer</button>
+        <button data-role="barber" class="role-btn">Barber</button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel status-panel">
+        <h2>Live Availability</h2>
+        <div class="status-row">
+          <span id="statusDot" class="status-dot"></span>
+          <p id="liveStatusText">Loading status...</p>
+        </div>
+        <p id="statusHint" class="muted"></p>
+
+        <div id="barberControls" class="barber-controls hidden">
+          <label for="statusSelect">Set Status</label>
+          <select id="statusSelect">
+            <option value="available">Available</option>
+            <option value="break">On Break</option>
+            <option value="busy">Busy</option>
+            <option value="offline">Offline</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="panel booking-panel" id="customerBookingSection">
+        <h2>Request Appointment</h2>
+        <form id="bookingForm" class="booking-form">
+          <label for="customerName">Your Name</label>
+          <input id="customerName" required placeholder="Enter your name" />
+
+          <label for="serviceSelect">Service</label>
+          <select id="serviceSelect" required></select>
+
+          <label for="dateInput">Date</label>
+          <input id="dateInput" type="date" required />
+
+          <label for="slotSelect">Available Time Slots</label>
+          <select id="slotSelect" required></select>
+
+          <button type="submit" class="primary-btn">Send Request</button>
+        </form>
+        <p class="muted">Requests remain pending until the barber approves.</p>
+      </section>
+
+      <section class="panel calendar-panel">
+        <div class="calendar-head">
+          <h2>Confirmed Calendar</h2>
+          <div class="calendar-nav">
+            <button id="prevMonth" aria-label="Previous month">◀</button>
+            <p id="monthLabel"></p>
+            <button id="nextMonth" aria-label="Next month">▶</button>
+          </div>
+        </div>
+        <div id="calendarGrid" class="calendar-grid"></div>
+      </section>
+
+      <section class="panel workflow-panel">
+        <h2>Request Workflow</h2>
+
+        <div id="customerWorkflow">
+          <h3>Your Requests</h3>
+          <ul id="customerRequests" class="list"></ul>
+        </div>
+
+        <div id="barberWorkflow" class="hidden">
+          <h3>Pending Approval</h3>
+          <ul id="pendingList" class="list"></ul>
+
+          <h3>Daily Dashboard</h3>
+          <ul id="todaySchedule" class="list"></ul>
+
+          <h3>Past Appointments</h3>
+          <ul id="historyList" class="list"></ul>
+        </div>
+      </section>
+    </main>
+
+    <template id="bookingItemTemplate">
+      <li class="list-item">
+        <div>
+          <p class="item-title"></p>
+          <p class="item-sub"></p>
+        </div>
+        <div class="item-actions"></div>
+      </li>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
